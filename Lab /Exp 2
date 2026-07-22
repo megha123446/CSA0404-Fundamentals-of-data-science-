@@ -1,0 +1,12 @@
+import pandas as pd
+
+data = {
+    "Month_sales": ["October 2023", "November 2023", "November 2023", "December 2023"],
+    "Price": [150, 200, 250, 300]
+}
+
+df = pd.DataFrame(data)
+
+average_price = df[df["Month_sales"] == "November 2023"]["Price"].mean()
+
+print("Average price in November 2023 (Past Month):", round(average_price,2))
