@@ -1,0 +1,12 @@
+import pandas as pd
+data = {
+    "Product_Name": [
+        "Laptop", "Mouse", "Keyboard", "Monitor",
+        "Laptop", "Mouse", "Headphones", "Keyboard"
+    ],
+    "Price": [50000, 500, 1500, 12000, 52000, 700, 3000, 1800]
+}
+df = pd.DataFrame(data)
+top_5_products = df.groupby("Product_Name")["Price"].sum().nlargest(5)
+print("Five most sold products:")
+print(top_5_products)
