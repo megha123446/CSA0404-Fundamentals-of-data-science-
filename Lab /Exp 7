@@ -1,0 +1,27 @@
+import pandas as pd
+
+data = {
+    "Full Name": ["Rahul", "Priya", "Rahul", "Anu", "Priya"],
+    "Items": ["Laptop", "Mouse", "Keyboard", "Laptop", "Mouse"],
+    "Order Count": [2, 1, 3, 1, 2],
+    "Order Total": [1000, 500, 1500, 1000, 1000],
+    "Order": ["2025-07-01", "2025-07-03", "2025-07-05", "2025-07-02", "2025-07-06"]
+}
+
+df = pd.DataFrame(data)
+
+df["Order"] = pd.to_datetime(df["Order"])
+
+total_orders = df.groupby("Full Name")["Order Count"].sum()
+avg_order_per_product = df.groupby("Items")["Order Total"].mean()
+earliest_order = df["Order"].min()
+latest_order = df["Order"].max()
+
+print("Total number of orders made by each customer:")
+print(total_orders)
+
+print("\nAverage order total for each product:")
+print(avg_order_per_product)
+
+print("\nEarliest order date:", earliest_order.date())
+print("Latest order date:", latest_order.date())
