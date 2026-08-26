@@ -1,0 +1,13 @@
+import pandas as pd
+data = {
+    'Customer_ID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Age': [25, 30, 35, 40, 22, 28, 33, 38, 45, 50],
+    'Total Spending': [3000, 7500, 12000, 1500, 6000, 9000, 4000, 11000, 8000, 20000]
+}
+df = pd.DataFrame(data)
+df["Segment"] = pd.cut(
+    df["Total Spending"],
+    bins=[0,5000,10000,float("inf")],
+    labels=["Low Spenders","Medium Spenders","High Spenders"]
+)
+print(df.groupby("Segment", observed=True)["Age"].mean())
