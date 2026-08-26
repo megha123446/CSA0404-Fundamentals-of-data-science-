@@ -1,0 +1,15 @@
+import pandas as pd
+
+# Create a dummy DataFrame since 'sales_data.csv' was not found
+data = {
+    'Product': ['Product A', 'Product B', 'Product A', 'Product C', 'Product B'],
+    'Quantity Sold': [10, 5, 12, 8, 7],
+    'Unit Price': [50.0, 100.0, 52.0, 75.0, 105.0]
+}
+df = pd.DataFrame(data)
+
+df["Total Sales"] = df["Quantity Sold"] * df["Unit Price"]
+sales = df.groupby("Product")["Total Sales"].sum()
+profit = sales * 0.20
+
+print(profit.sort_values(ascending=False).head(5))
